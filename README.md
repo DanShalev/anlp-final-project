@@ -1,36 +1,41 @@
 # Fake News Detection
+## Overview
 
-This repository contains code for evaluating and fine-tuning a fake news detector on an adversarial fake news dataset.
+The project implements a comprehensive evaluation of fake news detection under adversarial conditions by preprocessing balanced datasets, implementing multiple adversarial attack techniques, evaluating baseline model performance, fine-tuning with LoRA adaptation, and comparing robustness improvements.
 
-## Setup
-
-To run the code:
-
-1. Open the notebook in Google Colab.
-2. Upload the `data` directory to the root folder of Google Colab.
-3. Run all cells in the notebook.
-
-## Modules
-
+## Sections
 ### 1. Data Preprocessing
 
-- Load the full Kaggle dataset.
-- Reduce the sample size and ensure real and fake examples are sampled from similar categories (e.g., politics).
-- Preprocess the data by filtering out hinting words (such as "Routers," which appear mostly in true examples).
-- Create adversarial data labels for each attack, combining original and adversarial labels for all adversarial techniques.
+- Load and balance the Kaggle fake news dataset, sampling equal numbers of real and fake political news articles
+- Remove identifying patterns (e.g., "Reuters" markers) to prevent dataset leakage
+- Create adversarial variants using multiple attack techniques for comprehensive evaluation
 
-### 2. Fake News Detector Definition
+## 2. Adversarial Attack Techniques
+1. **Leetspeak Transformation**: Converting letters to numbers (e.g., "a" → "4", "e" → "3")
+2. **Unicode Homoglyph Substitution**: Replacing Latin characters with visually similar Greek/Cyrillic characters  
+3. **Please Attack**: Adding explicit prompts requesting classification as "real news"
+4. **ASCII Smuggling**: Embedding hidden Unicode instructions to influence classification
 
-- Define a fake news detector using Gaama3, an LLM model with a prompt tailored for detecting fake news.
+### 3. Fake News Detector Definition  
+- Implement a fake news detector using Google's Gemma-3-1b language model
+- Design system prompts optimized for binary classification ("Real" or "Fake")
+- Configure the model for sequence classification with appropriate tokenization
 
 ### 3. Baseline Evaluation
-
-- Evaluate results on the entire dataset, including both normal and adversarial examples.
+- Evaluate the unmodified model performance on both original and adversarially modified examples
+- Establish performance baselines for comparison with fine-tuned models
 
 ### 4. Model Fine-Tuning
-
-- Fine-tune the model on the adversarial examples.
+- Apply LoRA (Low-Rank Adaptation) fine-tuning on adversarial examples
+- Train the model to improve robustness against the implemented attack techniques
 
 ### 5. Fine-Tuned Model Evaluation
+- Re-evaluate model performance on the same test sets post-fine-tuning
+- Compare classification accuracy and robustness improvements
+- Analyze the effectiveness of adversarial training for improving model resilience
 
-- Evaluate the results on the fine-tuned model.
+## Setup
+1. Open `main.ipynb` in Google Colab
+2. Upload the `data/` directory containing `Fake.csv` and `True.csv`
+3. Run all cells to reproduce the complete evaluation pipeline
+
