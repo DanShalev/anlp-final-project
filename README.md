@@ -22,8 +22,7 @@ The project implements a comprehensive evaluation of fake news detection under a
 - Configure the model for sequence classification with appropriate tokenization
 
 ### 3. Baseline Evaluation
-- Evaluate the unmodified model performance on both original and adversarially modified examples
-- Establish performance baselines for comparison with fine-tuned models
+- Establish performance baseline for comparison with fine-tuned model
 
 ### 4. Model Fine-Tuning
 - Apply LoRA (Low-Rank Adaptation) fine-tuning on adversarial examples
