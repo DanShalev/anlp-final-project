@@ -29,9 +29,8 @@ The project implements a comprehensive evaluation of fake news detection under a
 - Train the model to improve robustness against the implemented attack techniques
 
 ### 5. Fine-Tuned Model Evaluation
-- Re-evaluate model performance on the same test sets post-fine-tuning
-- Compare classification accuracy and robustness improvements
 - Analyze the effectiveness of adversarial training for improving model resilience
+- Compare accuracy improvements
 
 ## Setup
 1. Open `main.ipynb` in Google Colab
